@@ -20,7 +20,8 @@ public class TodoActivity extends Activity {
 
 	ListView lvItems;
 	ArrayList<String> items;
-	ArrayAdapter<String> itemsAdapter;
+	CustomListAdapter<String> itemsAdapter;
+	EditText etNewItem;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class TodoActivity extends Activity {
         lvItems = (ListView) findViewById(R.id.lvTodoItems);
         items = new ArrayList<String>();
         readItems();
-        itemsAdapter = new ArrayAdapter<String>(this,
+        itemsAdapter = new CustomListAdapter<String>(this,
         		android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
         setupListViewListener();
@@ -44,7 +45,7 @@ public class TodoActivity extends Activity {
     }
     
     public void addTodoItem(View v){
-    	EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+    	etNewItem = (EditText) findViewById(R.id.etNewItem);
     	itemsAdapter.add(etNewItem.getText().toString());
     	etNewItem.setText("");
     	saveItems();
@@ -55,6 +56,7 @@ public class TodoActivity extends Activity {
     		@Override
     		public boolean onItemLongClick(AdapterView<?> parent,
     				View v, int position, long rowId){
+    			
     			items.remove(position);
     			itemsAdapter.notifyDataSetChanged();
     			saveItems();
