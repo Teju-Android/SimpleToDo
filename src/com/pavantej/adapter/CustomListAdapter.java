@@ -1,4 +1,4 @@
-package com.pavantej.simpletodo;
+package com.pavantej.adapter;
 
 import java.util.ArrayList;
 

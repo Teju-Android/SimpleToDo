@@ -6,15 +6,17 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 
+import com.pavantej.adapter.CustomListAdapter;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TodoActivity extends Activity {
 
@@ -46,9 +48,16 @@ public class TodoActivity extends Activity {
     
     public void addTodoItem(View v){
     	etNewItem = (EditText) findViewById(R.id.etNewItem);
-    	itemsAdapter.add(etNewItem.getText().toString());
-    	etNewItem.setText("");
-    	saveItems();
+    	String input = etNewItem.getText().toString();
+    	if(input.isEmpty())
+    		Toast.makeText(getApplicationContext(), "Enter an Item to add",
+    				   Toast.LENGTH_LONG).show();
+    	else{
+    		itemsAdapter.add(etNewItem.getText().toString());
+        	etNewItem.setText("");
+        	saveItems();
+    	}
+    	
     }
 
     private void setupListViewListener(){
