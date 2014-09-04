@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:onClick="addTodoItem"
         android:text="@string/buttonLabel" />
 
     <ListView
@@ -35,7 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/etNewItem"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:stackFromBottom="false" >
+
     </ListView>
 
 </RelativeLayout>
